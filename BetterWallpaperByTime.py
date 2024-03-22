@@ -10,8 +10,9 @@ class Main:
         self.random_walls = random_walls
         self.full_folder_path = full_folder_path
         self.arg_ = sys.argv
-        self.Wallpaper_Changed_Time = datetime.datetime.now()
+        # self.Wallpaper_Changed_Time = datetime.datetime.now()
         self.count = 0
+        self.Wallpaper_Changed = False
     def GetUnClassified(self):
         self.UnClassified_path = self.full_folder_path+"Un-classified/"
         self.UnClassified_files = subprocess.getoutput(f"ls {self.UnClassified_path}")
@@ -98,13 +99,13 @@ class Main:
 
     def get_time_period(self, current_time=datetime.datetime.now()):
         hour = current_time.hour
-        if 6 <= hour < 10:
+        if 5 <= hour < 10:
             return "Sunrise"
         elif 10 <= hour < 17:
             return "Noon"
         elif 17 <= hour < 20:
             return "Sunset"
-        else:
+        elif 20 <= hour < 5:
             return "Night"
 
     def FindMood_and_SetWall(self):
@@ -123,28 +124,38 @@ class Main:
         self.lightThemeran_image = self.image_list[1] + '.jpg'
         self.Msunran_image = self.image_list[-1] + '.jpg' 
         if self.random_walls == False:
-            if self.get_time_period(self.Wallpaper_Changed_Time) == "Sunrise" or self.get_time_period(self.Wallpaper_Changed_Time) == "Sunset":
-                os.system('nitrogen --set-zoom-fill '+os.path.expanduser("~")+'/Pictures/dt/wallpapers/Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
-            elif self.get_time_period(self.Wallpaper_Changed_Time) == "Noon":
+            if self.get_time_period() == "Sunrise" or self.get_time_period() == "Sunset":
+                os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
+                self.Wallpaper_Changed = True
+            elif self.get_time_period() == "Noon":
                 ksfja=random.randint(0,1)
                 if ksfja == 0:
-                    os.system('nitrogen --set-zoom-fill '+os.path.expanduser("~")+'/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_light/'+self.MlightThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_light/'+self.MlightThemeran_image)
+                    self.Wallpaper_Changed = True
                 elif ksfja == 1:
-                    os.system('nitrogen --set-zoom-fill '+os.path.expanduser("~")+'/Pictures/dt/wallpapers/Light-themes/'+self.lightThemeran_image)
-            elif self.get_time_period(self.Wallpaper_Changed_Time) == "Night":
+                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Light-themes/'+self.lightThemeran_image)
+                self.Wallpaper_Changed = True
+            elif self.get_time_period() == "Night":
                 ksfja=random.randint(0,1)
                 if ksfja == 0:
-                    os.system('nitrogen --set-zoom-fill '+os.path.expanduser("~")+'/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_dark/'+self.MdarkThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_dark/'+self.MdarkThemeran_image)
+                    self.Wallpaper_Changed = True
                 elif ksfja == 1:
-                    os.system('nitrogen --set-zoom-fill '+os.path.expanduser("~")+'/Pictures/dt/wallpapers/Dark-themes/'+self.darkThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Dark-themes/'+self.darkThemeran_image)
+                    self.Wallpaper_Changed = True
     def UpdateWall(self):
         if self.arg_[1] == 'wall_on_start':
             if self.count == 0:
                 self.FindMood_and_SetWall()
                 self.count += 1
-        time.sleep(1800)
-        self.FindMood_and_SetWall()
+        if self.Wallpaper_Changed:
+            time.sleep(1800)
+            self.FindMood_and_SetWall()
+        else:
+            print("something went wrong somewhere! :(")
 if __name__ == "__main__":
     main_Instance = Main()
     while True:
         main_Instance.UpdateWall()
+        if main_Instance.Wallpaper_Changed == False:
+            break
