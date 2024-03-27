@@ -10,20 +10,8 @@ class Main:
         self.random_walls = random_walls
         self.full_folder_path = full_folder_path
         self.arg_ = sys.argv
-        # self.Wallpaper_Changed_Time = datetime.datetime.now()
         self.count = 0
         self.Wallpaper_Changed = False
-    def GetUnClassified(self):
-        self.UnClassified_path = self.full_folder_path+"Un-classified/"
-        self.UnClassified_files = subprocess.getoutput(f"ls {self.UnClassified_path}")
-        
-        self.Unclassified_list = self.UnClassified_files.split()
-        for a in range(len(self.Unclassified_list)):
-            item_a = list(self.Unclassified_list[a])
-            item_a = item_a[:-4]
-            self.Unclassified_list[a] = int(''.join(item_a))
-
-        return self.Unclassified_list
     def GetDarkThemes(self):
         self.DarkThemes_path = self.full_folder_path+"Dark-themes/"
         self.DarkThemes_files = subprocess.getoutput(f"ls {self.DarkThemes_path}")
@@ -89,7 +77,6 @@ class Main:
     
     def Main(self):
         return [        
-                self.GetRandomNumber(self.GetUnClassified),
                 self.GetRandomNumber(self.GetLightThemes),
                 self.GetRandomNumber(self.GetDarkThemes),
                 self.GetRandomNumber(self.MountainDarkThemes),
@@ -103,54 +90,59 @@ class Main:
             return "Sunrise"
         elif 10 <= hour < 17:
             return "Noon"
-        elif 17 <= hour < 20:
+        elif 17 <= hour < 19:
             return "Sunset"
-        elif 20 <= hour < 5:
+        else:
             return "Night"
-
-    def FindMood_and_SetWall(self):
+    # def FindMood(self):
+    def SetWall(self):
         self.image_list = self.Main()
-        #case Un-classified
-        if self.image_list[1] == '326':
-            self.unclassifiedran_image = self.image_list[1] + '.png'
-        else:
-            self.unclassifiedran_image = self.image_list[1] + '.jpg'
         if self.image_list[2] == '344':
-            self.MdarkThemeran_image = self.image_list[3] + '.png'
+            self.MdarkThemeran_image = self.image_list[2] + '.png'
         else:
-            self.MdarkThemeran_image = self.image_list[3] + '.jpg'
-        self.darkThemeran_image = self.image_list[2] + '.jpg'
-        self.MlightThemeran_image = self.image_list[4] + '.jpg'
-        self.lightThemeran_image = self.image_list[1] + '.jpg'
+            self.MdarkThemeran_image = self.image_list[2] + '.jpg'
+        self.darkThemeran_image = self.image_list[1] + '.jpg'
+        self.MlightThemeran_image = self.image_list[3] + '.jpg'
+        self.lightThemeran_image = self.image_list[0] + '.jpg'
         self.Msunran_image = self.image_list[-1] + '.jpg' 
         if self.random_walls == False:
             if self.get_time_period() == "Sunrise" or self.get_time_period() == "Sunset":
                 os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
                 self.Wallpaper_Changed = True
+                with open('log.txt','a') as log:
+                    log.write(f'Updated the wall {self.Msunran_image} (Msunset) on {datetime.datetime.now()}  \n')
             elif self.get_time_period() == "Noon":
                 ksfja=random.randint(0,1)
                 if ksfja == 0:
                     os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_light/'+self.MlightThemeran_image)
                     self.Wallpaper_Changed = True
+                    with open('log.txt','a') as log:
+                        log.write(f'Updated the wall {self.MlightThemeran_image} (Mlight) on {datetime.datetime.now()} \n')
                 elif ksfja == 1:
                     os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Light-themes/'+self.lightThemeran_image)
-                self.Wallpaper_Changed = True
+                    self.Wallpaper_Changed = True
+                    with open('log.txt','a') as log:
+                        log.write(f'Updated the wall {self.lightThemeran_image} (Light) on {datetime.datetime.now()} \n')
             elif self.get_time_period() == "Night":
                 ksfja=random.randint(0,1)
                 if ksfja == 0:
                     os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_dark/'+self.MdarkThemeran_image)
                     self.Wallpaper_Changed = True
+                    with open('log.txt','a') as log:
+                        log.write(f'Updated the wall {self.MdarkThemeran_image} (Mdark) on {datetime.datetime.now()} \n')
                 elif ksfja == 1:
                     os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Dark-themes/'+self.darkThemeran_image)
                     self.Wallpaper_Changed = True
+                    with open('log.txt','a') as log:
+                        log.write(f'Updated the wall {self.darkThemeran_image} (Dark) on {datetime.datetime.now()} \n')
     def UpdateWall(self):
         if self.arg_[1] == 'wall_on_start':
             if self.count == 0:
-                self.FindMood_and_SetWall()
+                self.SetWall()
                 self.count += 1
         if self.Wallpaper_Changed:
             time.sleep(1800)
-            self.FindMood_and_SetWall()
+            self.SetWall()
         else:
             print("something went wrong somewhere! :(")
 if __name__ == "__main__":
