@@ -6,7 +6,7 @@ import datetime
 import argparse
 
 class Main:
-    def __init__(self, full_folder_path=os.path.expanduser("~") + "/Pictures/dt/wallpapers/", random_walls=False):
+    def __init__(self, full_folder_path=os.path.expanduser("~") + os.system('pwd'), random_walls=False):
         self.random_walls = random_walls
         self.full_folder_path = full_folder_path
         self.count = 0
