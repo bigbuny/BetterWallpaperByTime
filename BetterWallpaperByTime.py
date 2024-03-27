@@ -3,15 +3,22 @@ import subprocess
 import random
 import time
 import datetime
-import sys
+import argparse
 
 class Main:
     def __init__(self, full_folder_path=os.path.expanduser("~") + "/Pictures/dt/wallpapers/", random_walls=False):
         self.random_walls = random_walls
         self.full_folder_path = full_folder_path
-        self.arg_ = sys.argv
         self.count = 0
         self.Wallpaper_Changed = False
+    def Commands(self):
+        parser = argparse.ArgumentParser()
+        
+        parser.add_argument('--MODE', type=str, default='', help='Specify the mode (Possible-modes:- \n (1) wall_on_start  )')
+        parser.add_argument('--TIMER', type=float, default=None, help='Specify the timer duration in only float datatype')
+    
+        args = parser.parse_args() 
+        return (args.MODE, args.TIMER)
     def GetDarkThemes(self):
         self.DarkThemes_path = self.full_folder_path+"Dark-themes/"
         self.DarkThemes_files = subprocess.getoutput(f"ls {self.DarkThemes_path}")
@@ -136,13 +143,18 @@ class Main:
                     with open('log.txt','a') as log:
                         log.write(f'Updated the wall {self.darkThemeran_image} (Dark) on {datetime.datetime.now()} \n')
     def UpdateWall(self):
-        if self.arg_[1] == 'wall_on_start':
+        self.mode, self.timer = self.Commands()
+        if self.mode == "wall_on_start":
             if self.count == 0:
                 self.SetWall()
                 self.count += 1
         if self.Wallpaper_Changed:
-            time.sleep(1800)
-            self.SetWall()
+            if self.timer == None:
+                time.sleep(1800)
+                self.SetWall()
+            else:
+                time.sleep(self.timer)
+                self.SetWall()
         else:
             print("something went wrong somewhere! :(")
 if __name__ == "__main__":
