@@ -73,6 +73,10 @@ class Main:
         #     self.MSUNThemes_list[f] = ''.join(item_f)
 
         return self.MSUNThemes_list
+    
+    # def GetWeight(self, mountain_l, _l):
+
+
     def GetRandomNumber(self, function_):
         self.GetList_ = function_()
         self.RandomInt = random.randint(0,len(self.GetList_))
