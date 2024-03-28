@@ -14,16 +14,18 @@ class Main:
         
         parser.add_argument('--MODE', type=str, default='', help='Specify the mode (Possible-modes:- \n (1) wall_on_start  )')
         parser.add_argument('--TIMER', type=float, default=None, help='Specify the timer duration in only float datatype')
-        parser.add_argument('--FOLDER_PATH', type=str, default='/wallpapers_/',help='Specify the FOLDER_PATH of the git repository in your system')
+        parser.add_argument('--FOLDER_PATH', type=str, default='/Pictures/dt/wallpapers/',help='Specify the FOLDER_PATH of the git repository in your system')
     
         self.args = parser.parse_args() 
         self.full_folder_path = full_folder_path + self.args.FOLDER_PATH
         self.arg_ = (self.args.MODE, self.args.TIMER)
     def GetDarkThemes(self):
         self.DarkThemes_path = self.full_folder_path+"Dark-themes/"
+        print(self.DarkThemes_path)
         self.DarkThemes_files = subprocess.getoutput(f"ls {self.DarkThemes_path}")
         
         self.DarkThemes_list = self.DarkThemes_files.split()
+        print(self.DarkThemes_list)
         # for b in range(len(self.DarkThemes_list)):
         #     item_b = list(self.DarkThemes_list[b])
         #     item_b = item_b[:-4]
@@ -102,6 +104,7 @@ class Main:
             return "Night"
     def SetWall(self):
         self.image_list = self.Main()
+        print(self.image_list)
 
         self.MdarkThemeran_image = self.image_list[2] 
         self.darkThemeran_image = self.image_list[1] 
