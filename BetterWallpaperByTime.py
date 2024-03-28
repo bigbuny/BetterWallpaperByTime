@@ -21,11 +21,9 @@ class Main:
         self.arg_ = (self.args.MODE, self.args.TIMER)
     def GetDarkThemes(self):
         self.DarkThemes_path = self.full_folder_path+"Dark-themes/"
-        print(self.DarkThemes_path)
         self.DarkThemes_files = subprocess.getoutput(f"ls {self.DarkThemes_path}")
         
         self.DarkThemes_list = self.DarkThemes_files.split()
-        print(self.DarkThemes_list)
         # for b in range(len(self.DarkThemes_list)):
         #     item_b = list(self.DarkThemes_list[b])
         #     item_b = item_b[:-4]
