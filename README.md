@@ -25,11 +25,10 @@ cd BetterWallpaperByTime
 usage: BetterWallpaperByTime.py [-h] [--MODE MODE] [--TIMER TIMER] [--FOLDER_PATH FOLDER_PATH]
 
 options:
-  -h, --help            show this help message and exit
-  --MODE MODE           Specify the mode (Possible-modes:- (1) wall_on_start )
-  --TIMER TIMER         Specify the timer duration in only float datatype
-  --FOLDER_PATH FOLDER_PATH
-                        Specify the FOLDER_PATH of the git repository in your system
+  -h, --help                show this help message and exit
+  --MODE        MODE        Specify the mode (Possible-modes:- (1) wall_on_start )
+  --TIMER       TIMER       Specify the timer duration in only float datatype
+  --FOLDER_PATH FOLDER_PATH Specify the FOLDER_PATH of the git repository in your system
 
 ```
 
