@@ -49,4 +49,4 @@ Name=MyApplication
 Exec=/wallpapers_/BetterWallpaperByTime.py wall_on_start
 ```
 
-Wallpaper Source: [https://gitlab.com/dwt1/wallpapers](https://gitlab.com/dwt1/wallpapers)
+Major Wallpaper Source: [https://gitlab.com/dwt1/wallpapers](https://gitlab.com/dwt1/wallpapers)
