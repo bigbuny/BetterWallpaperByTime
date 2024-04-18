@@ -116,31 +116,31 @@ class Main:
 
         if self.random_walls == False:
             if self.get_time_period() == "Sunrise" or self.get_time_period() == "Sunset":
-                os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
+                os.system('nitrogen --set-zoom-fill '+ self.full_folder_path + 'Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
                 self.Wallpaper_Changed = True
                 with open('log.txt','a') as log:
                     log.write(f'Updated the wall {self.Msunran_image} (Msunset) on {datetime.datetime.now()}  \n')
             elif self.get_time_period() == "Noon":
                 ksfja=random.randint(0,1)
                 if ksfja == 0:
-                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_light/'+self.MlightThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+self.full_folder_path+'Mountain_nature_kinda/Mountain_light/'+self.MlightThemeran_image)
                     self.Wallpaper_Changed = True
                     with open('log.txt','a') as log:
                         log.write(f'Updated the wall {self.MlightThemeran_image} (Mlight) on {datetime.datetime.now()} \n')
                 elif ksfja == 1:
-                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Light-themes/'+self.lightThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+self.full_folder_path+'Light-themes/'+self.lightThemeran_image)
                     self.Wallpaper_Changed = True
                     with open('log.txt','a') as log:
                         log.write(f'Updated the wall {self.lightThemeran_image} (Light) on {datetime.datetime.now()} \n')
             elif self.get_time_period() == "Night":
                 ksfja=random.randint(0,1)
                 if ksfja == 0:
-                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_dark/'+self.MdarkThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+self.full_folder_path+'Mountain_nature_kinda/Mountain_dark/'+self.MdarkThemeran_image)
                     self.Wallpaper_Changed = True
                     with open('log.txt','a') as log:
                         log.write(f'Updated the wall {self.MdarkThemeran_image} (Mdark) on {datetime.datetime.now()} \n')
                 elif ksfja == 1:
-                    os.system('nitrogen --set-zoom-fill '+'/home/Akash/Pictures/dt/wallpapers/Dark-themes/'+self.darkThemeran_image)
+                    os.system('nitrogen --set-zoom-fill '+self.full_folder_path+'Dark-themes/'+self.darkThemeran_image)
                     self.Wallpaper_Changed = True
                     with open('log.txt','a') as log:
                         log.write(f'Updated the wall {self.darkThemeran_image} (Dark) on {datetime.datetime.now()} \n')
