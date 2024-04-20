@@ -13,7 +13,7 @@ check:- [nitrogen](https://github.com/l3ib/nitrogen) for more info
 ```bash
 # Install Nitrogen
 sudo apt install nitrogen #For ubuntu
-sudo pacman -S nitrogen #For Arch and arch like os
+sudo pacman -S nitrogen #For Arch and arch like distro
 
 # Clone the repository
 git clone https://github.com/bigbuny/BetterWallpaperByTime.git
