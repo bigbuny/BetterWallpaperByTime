@@ -91,40 +91,6 @@ class Main:
 
         if self.random_walls == False:
             if self.get_time_period() == "Sunrise" or self.get_time_period() == "Sunset":
-<<<<<<< HEAD
-                os.system('betterlockscreen -u '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
-                self.Wallpaper_Changed = True
-                with open('log_lock.txt','a') as log_lock:
-                    log_lock.write(f'Updated The Lockscreen Wall {self.Msunran_image} (Msunset) on {datetime.datetime.now()}  \n')
-            elif self.get_time_period() == "Noon":
-                ksfja=random.randint(0,1)
-                if ksfja == 0:
-                    os.system('betterlockscreen -u '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_light/'+self.MlightThemeran_image)
-                    self.Wallpaper_Changed = True
-                    with open('log_lock.txt','a') as log_lock:
-                        log_lock.write(f'Updated The Lockscreen Wall {self.MlightThemeran_image} (Mlight) on {datetime.datetime.now()} \n')
-                elif ksfja == 1:
-                    os.system('betterlockscreen -u '+'/home/Akash/Pictures/dt/wallpapers/Light-themes/'+self.lightThemeran_image)
-                    self.Wallpaper_Changed = True
-                    with open('log_lock.txt','a') as log_lock:
-                        log_lock.write(f'Updated The Lockscreen Wall {self.lightThemeran_image} (Light) on {datetime.datetime.now()} \n')
-            elif self.get_time_period() == "Night":
-                ksfja=random.randint(0,1)
-                if ksfja == 0:
-                    os.system('betterlockscreen -u '+'/home/Akash/Pictures/dt/wallpapers/Mountain_nature_kinda/Mountain_dark/'+self.MdarkThemeran_image)
-                    self.Wallpaper_Changed = True
-                    with open('log_lock.txt','a') as log_lock:
-                        log_lock.write(f'Updated The Lockscreen Wall {self.MdarkThemeran_image} (Mdark) on {datetime.datetime.now()} \n')
-                elif ksfja == 1:
-                    os.system('betterlockscreen -u '+'/home/Akash/Pictures/dt/wallpapers/Dark-themes/'+self.darkThemeran_image)
-                    self.Wallpaper_Changed = True
-                    with open('log_lock.txt','a') as log_lock:
-                        log_lock.write(f'Updated The Lockscreen Wall {self.darkThemeran_image} (Dark) on {datetime.datetime.now()} \n')
-if __name__ == "__main__":
-    main_Instance = Main()
-    main_Instance.SetWall()
-
-=======
                 os.system('betterlockscreen -u '+ self.full_folder_path + 'Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
                 self.Wallpaper_Changed = True
                 with open('log.txt','a') as log:
@@ -153,9 +119,6 @@ if __name__ == "__main__":
                     self.Wallpaper_Changed = True
                     with open('log.txt','a') as log:
                         log.write(f'Updated the wall {self.darkThemeran_image} (Dark) on {datetime.datetime.now()} \n')
-
-
 if __name__ == "__main__":
     main_Instance = Main()
     main_Instance.SetWall()
->>>>>>> origin/main
