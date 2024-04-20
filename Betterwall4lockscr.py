@@ -22,7 +22,7 @@ class Main:
     def GetDarkThemes(self):
         self.DarkThemes_path = self.full_folder_path+"Dark-themes/"
         self.DarkThemes_files = subprocess.getoutput(f"ls {self.DarkThemes_path}")
-
+        
         self.DarkThemes_list = self.DarkThemes_files.split()
         return self.DarkThemes_list
     def GetLightThemes(self):
@@ -30,28 +30,24 @@ class Main:
         self.LightThemes_files = subprocess.getoutput(f"ls {self.LightThemes_path}")
 
         self.LightThemes_list = self.LightThemes_files.split()
-
         return self.LightThemes_list
     def MountainLightThemes(self):
         self.MlightThemes_path = self.full_folder_path+"Mountain_nature_kinda/Mountain_light"
         self.MlightThemes_files = subprocess.getoutput(f"ls {self.MlightThemes_path}")
 
         self.MlightThemes_list = self.MlightThemes_files.split()
-
         return self.MlightThemes_list
     def MountainDarkThemes(self):
         self.MdarkThemes_path = self.full_folder_path+"Mountain_nature_kinda/Mountain_dark"
         self.MdarkThemes_files = subprocess.getoutput(f"ls {self.MdarkThemes_path}")
 
         self.MdarkThemes_list = self.MdarkThemes_files.split()
-
         return self.MdarkThemes_list
     def MountainSunsetThemes(self):
         self.MSUNThemes_path = self.full_folder_path+"Mountain_nature_kinda/mountain_sunset"
         self.MSUNThemes_files = subprocess.getoutput(f"ls {self.MSUNThemes_path}")
 
         self.MSUNThemes_list = self.MSUNThemes_files.split()
-
         return self.MSUNThemes_list
     def GetRandomNumber(self, function_):
         self.GetList_ = function_()
@@ -60,7 +56,6 @@ class Main:
             return self.GetList_[self.RandomInt]
         except IndexError:
             return self.GetList_[random.randint(0,10)]
-
     def Main(self):
         return [
                 self.GetRandomNumber(self.GetLightThemes),
@@ -69,7 +64,6 @@ class Main:
                 self.GetRandomNumber(self.MountainLightThemes),
                 self.GetRandomNumber(self.MountainSunsetThemes)
         ]
-
     def get_time_period(self, current_time=datetime.datetime.now()):
         hour = current_time.hour
         if 5 <= hour < 10:
