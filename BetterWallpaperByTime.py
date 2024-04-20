@@ -117,7 +117,11 @@ class Main:
 
         if self.random_walls == False:
             if self.get_time_period() == "Sunrise" or self.get_time_period() == "Sunset":
+<<<<<<< HEAD
                 os.system('nitrogen --set-zoom-fill '+self.full_folder_path+'Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
+=======
+                os.system('nitrogen --set-zoom-fill '+ self.full_folder_path + 'Mountain_nature_kinda/mountain_sunset/'+self.Msunran_image)
+>>>>>>> origin/main
                 self.Wallpaper_Changed = True
                 with open('log.txt','a') as log:
                     log.write(f'Updated the wall {self.Msunran_image} (Msunset) on {datetime.datetime.now()}  \n')
